@@ -1142,7 +1142,7 @@ input, select, textarea {
 			background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url("../../images/overlay.png");
 			background-size: auto,
  256px 256px;
-			background-position: center,
+			background-position: center 20%,
  center;
 			background-repeat: no-repeat,
  repeat;
