@@ -1674,3 +1674,45 @@ input, select, textarea {
 		#header > .content {
 			margin-top: 0 !important;
 		}
+
+		/* ===== Ce ofer custom layout ===== */
+
+		.offer-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+		}
+
+		.offer-card {
+		border: solid 1px rgba(255,255,255,0.2);
+		border-radius: 10px;
+		padding: 1.5rem;
+		background: rgba(255,255,255,0.03);
+		}
+
+		.offer-card h3 {
+		margin-top: 0;
+		}
+
+		.offer-card .meta {
+		list-style: none;
+		padding: 0;
+		margin-bottom: 1rem;
+		}
+
+		.offer-card details {
+		margin: 1rem 0;
+		}
+
+		.offer-card summary {
+		cursor: pointer;
+		font-weight: 600;
+		}
+
+		/* Mobile */
+		@media screen and (max-width: 980px) {
+		.offer-grid {
+			grid-template-columns: 1fr;
+		}
+		}
