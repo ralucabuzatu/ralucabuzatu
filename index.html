@@ -133,14 +133,15 @@
 						<!-- Vreau -->
 							<article id="vreau">
 								<h2 class="major">Vreau</h2>
-								<section id="programare" style="max-width: 1000px; margin: 40px auto; padding: 0 16px;">
+								<section id="programare" style="max-width: 100%; margin: 40px auto; padding: 0;">
 									<!-- <h2 style="margin-bottom: 12px;">Programează o ședință</h2> -->
 									<p style="margin-top: 0; margin-bottom: 16px; opacity: 0.8;">
 										Alege tipul întâlnirii, apoi selectează data și ora disponibile.
 									</p>
 
-									<div style="border: 1px solid rgba(0,0,0,0.12); border-radius: 12px; overflow: hidden;">
+									<div id="iframe-holder" style="border: 1px solid rgba(0,0,0,0.12); border-radius: 12px; overflow: hidden;">
 										<iframe
+										id="calendar-cal"
 										src="https://cal.com/ralucabuzatu"
 										style="width: 100%; height: 820px; border: 0;"
 										loading="lazy"
@@ -514,5 +515,28 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 		})();
 		</script>
 
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				const linkVreau = document.querySelector('a[href="#vreau"]');
+				const container = document.getElementById('iframe-holder');
+
+				if (linkVreau && container) {
+					linkVreau.addEventListener('click', function() {
+						setTimeout(function() {
+							container.innerHTML = `
+								<iframe
+									id="calendar-cal"
+									src="https://cal.com/ralucabuzatu"
+									style="width: 100%; height: 820px; border: 0;"
+									loading="lazy"
+									referrerpolicy="no-referrer-when-downgrade"
+									allow="camera; microphone; fullscreen; display-capture">
+								</iframe>
+							`;
+						}, 150);
+					});
+				}
+			});
+		</script>
 	</body>
 </html>
