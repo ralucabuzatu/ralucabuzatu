@@ -484,18 +484,11 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			timestamp: new Date().toISOString()
 			};
 
-			try {
-			const response = await fetch(
-				"https://n8n.razvanbuzatu.com/webhook/incepem",
-				{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				credentials: "include",
-				body: JSON.stringify(payload)
-				}
-			);
+			fetch("https://n8n.razvanbuzatu.com/webhook/incepem", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(payload)
+			});
 
 			const data = await response.json();
 
