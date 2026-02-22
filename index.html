@@ -464,47 +464,53 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 	<script>
 		(function () {
+			const form = document.getElementById('incepemForm');
+			const statusEl = document.getElementById('incepemStatus');
+			if (!form) return;
 
-		const form = document.getElementById('incepemForm');
-		const statusEl = document.getElementById('incepemStatus');
-		if (!form) return;
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault();
+				statusEl.textContent = "Se trimite...";
 
-		form.addEventListener('submit', async (e) => {
-			e.preventDefault();
+				// Wrap the logic in try { }
+				try {
+					const payload = {
+						nume: document.getElementById('nume').value.trim(),
+						prenume: document.getElementById('prenume').value.trim(),
+						email: document.getElementById('email').value.trim(),
+						telefon: document.getElementById('telefon').value.trim(),
+						mesaj: document.getElementById('mesaj').value.trim(),
+						source: "ralucabuzatu.ro",
+						timestamp: new Date().toISOString()
+					};
 
-			statusEl.textContent = "Se trimite...";
+					const response = await fetch("https://n8n.razvanbuzatu.com/webhook/incepem", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(payload)
+					});
 
-			const payload = {
-			nume: document.getElementById('nume').value.trim(),
-			prenume: document.getElementById('prenume').value.trim(),
-			email: document.getElementById('email').value.trim(),
-			telefon: document.getElementById('telefon').value.trim(),
-			mesaj: document.getElementById('mesaj').value.trim(),
-			source: "ralucabuzatu.ro",
-			timestamp: new Date().toISOString()
-			};
+					// Check if the HTTP status is 200-299
+					if (!response.ok) {
+						throw new Error(`Server responded with ${response.status}`);
+					}
 
-			fetch("https://n8n.razvanbuzatu.com/webhook/incepem", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(payload)
+					const data = await response.json();
+
+					// Note: n8n usually returns a custom object. 
+					// Ensure your n8n Respond to Webhook node sends { "ok": true }
+					if (data && (data.ok || data.message === 'success' || response.status === 200)) {
+						statusEl.textContent = "Mesaj trimis cu succes.";
+						form.reset();
+					} else {
+						throw new Error("Invalid response format");
+					}
+
+				} catch (err) {
+					statusEl.textContent = "Eroare la trimitere. Încearcă din nou.";
+					console.error("Webhook Error:", err);
+				}
 			});
-
-			const data = await response.json();
-
-			if (data.ok) {
-				statusEl.textContent = "Mesaj trimis cu succes.";
-				form.reset();
-			} else {
-				throw new Error();
-			}
-
-			} catch (err) {
-			statusEl.textContent = "Eroare la trimitere. Încearcă din nou.";
-			console.error(err);
-			}
-		});
-
 		})();
 		</script>
 
