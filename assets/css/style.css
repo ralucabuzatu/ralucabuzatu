@@ -748,8 +748,25 @@ p  { margin: 0 0 1.1em; }
   .field.half { grid-column: 1 / -1; }
   .cta-row { flex-direction: column; }
   .cta-row .btn { width: 100%; }
-  .photo-badge { position: static; transform: none; width: 100%; margin-top: 14px; }
   .brand-text em { display: none; }
   .price-meta .price { font-size: 1.8rem; }
   #booking, .booking-placeholder { min-height: 760px; }
+
+  /* Pe telefon totul de deasupra titlului se comprima, ca „Poți deveni cine
+     ești cu adevărat” sa incapa pe primul ecran, nu sub el. */
+  .hero { padding-top: 20px; }
+  .hero-photo { margin-bottom: 16px; }
+  .hero-photo img { aspect-ratio: 3 / 2; object-position: 50% 14%; }
+
+  /* Insigna nu mai e un card peste poza, ci o simpla legenda sub ea.
+     Numele dispare — e oricum mereu vizibil in antetul lipit. */
+  .photo-badge {
+    position: static; transform: none; width: 100%;
+    margin-top: 8px; padding: 0;
+    background: none; border: 0; box-shadow: none;
+  }
+  .photo-badge strong { display: none; }
+  .photo-badge span { font-size: .76rem; }
+
+  .eyebrow { font-size: .82rem; padding: .4rem .9rem; margin-bottom: .9rem; }
 }
