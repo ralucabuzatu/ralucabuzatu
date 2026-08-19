@@ -582,12 +582,12 @@ p  { margin: 0 0 1.1em; }
 
 .contact-photo img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: 50% 50%;
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  max-width: 420px;
+  max-width: 400px;
 }
 
 .contact-form-wrap {
