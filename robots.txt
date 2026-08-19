@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ralucabuzatu.ro/sitemap.xml
