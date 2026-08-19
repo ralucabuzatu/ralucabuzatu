@@ -703,6 +703,7 @@ p  { margin: 0 0 1.1em; }
   .hero-photo img { aspect-ratio: 5 / 4; object-position: 50% 15%; }
 
   .about-grid { grid-template-columns: 1fr; }
+  .about-copy { order: -1; }
   .about-photo { max-width: 440px; margin: 0 auto; }
   .about-photo img { aspect-ratio: 4 / 3; object-position: 50% 10%; }
 
@@ -737,6 +738,15 @@ p  { margin: 0 0 1.1em; }
   .nav-cta { margin: 18px 0 0; }
   .nav-toggle { display: flex; }
   .mobile-cta { display: block; }
+
+  /* Aterizarea pe ancore.
+     Antetul lipit are 74px, iar fiecare sectiune are inca 64px de spatiu
+     propriu deasupra continutului. Fara compensare, saltul lasa o banda
+     goala sub antet si se vede sfarsitul sectiunii precedente.
+     scroll-margin negativ impinge derularea mai jos, exact cat sa intre
+     titlul sectiunii imediat sub antet. */
+  html { scroll-padding-top: 74px; }
+  section[id] { scroll-margin-top: -36px; }
   /* loc pentru bara CTA fixă, ca să nu acopere finalul paginii */
   .site-footer { padding-bottom: 112px; }
 }
